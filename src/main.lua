@@ -46,7 +46,9 @@ tCore.codeFile.load = function()
     if string.len(contentStr) > 0 then
         local t = json.decode(contentStr)
         if t then
-            tCodeFiles = t
+            for _, v in pairs(t) do
+                tCodeFiles[v.id] = v
+            end
         else
             print("load code_files failed.")
             print(contentStr)
