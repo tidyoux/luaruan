@@ -134,7 +134,7 @@ function main_panel:run()
         if f then
             f()
         else
-            print("invalid code.")
+            print("Error: invalid code.")
         end
     end
 end

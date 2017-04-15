@@ -40,7 +40,7 @@ function files_panel:initUI()
 
     for k, v in ipairs(self.mFiles) do
         local item = ccui.Button:create()
-        item:setTitleText("<" .. v.name .. ">")
+        item:setTitleText("[" .. v.id .. "] " .. v.name)
         item:setTitleFontSize(30)
         item:addClickEventListener(function()
             self:setCurIndex(k - 1)

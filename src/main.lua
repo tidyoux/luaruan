@@ -28,6 +28,7 @@ tCore.fileUtils = cc.FileUtils:getInstance()
 tCore.writePath = cc.FileUtils:getInstance():getWritablePath() .. "tidyoux-luarun/"
 tCore.userData = cc.UserDefault:getInstance()
 
+-- code file
 tCore.codeFile = {}
 
 local tUserDataKey = {
@@ -88,6 +89,21 @@ tCore.codeFile.delete = function(id)
         tCodeFiles[id] = nil
         tCore.codeFile.save()
     end
+end
+
+tCore.codeFile.import = function(id)
+    local codeFile = tCodeFiles[id]
+    if not(codeFile) then
+        print("Error: codeFile.import, invalid id:" .. id)
+        return nil
+    end
+
+    local f = loadstring(codeFile.content)
+    if f then
+        return f()
+    end
+    print("Error: codeFile.import, invalid code.")
+    return nil
 end
 
 --------------------------------------------------------------------------------
